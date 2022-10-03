@@ -1,0 +1,21 @@
+ public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final List<BaseOfCards> results = new ArrayList<BaseOfCards>();
+                if (orig == null)
+                    orig = items;
+                if (constraint != null) {
+                    if (orig != null & orig.size() > 0) {
+                        for (final BaseOfCards g : orig) {
+                            if (g.getCardName().toLowerCase().contains(constraint.toString()))
+                                results.add(g);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+        }
+    }
